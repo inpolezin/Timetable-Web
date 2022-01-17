@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Add group - ΔΙΑΓΡΑΜΜΑ</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">AdminPanel - create group <a href="/admins" class="all_exit">Выйти</a></div>
+        <form class="form_cs" th:method="POST" th:action="@{/groups}" th:object="${group}">
+            <div class="form_cs_header">Введите название группы:</div>
+            <input required class="form_cs_text" type="text" th:field="*{name}">
+            <br>
+            <input class="form_cs_button" type="submit" value="Добавить">
+        </form>
+    </div>
+</body>
+</html>

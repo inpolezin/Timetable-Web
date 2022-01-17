@@ -1,0 +1,1 @@
+document.cookie = "groupId=0; path=/timetables";

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" href="../../../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Admin - ΔΙΑΓΡΑΜΜΑ</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">AdminPanel</div>
+    <div class="panel">
+    <a href="/subjects/new" class="panel_item">Добавить учебный предмет</a>
+    <a href="/subjects" class="panel_item">Показать все учебные предметы</a>
+    <a href="/teachers/new" class="panel_item">Добавить преподавателя</a>
+    <a href="/teachers" class="panel_item">Показать всех преподавателей</a>
+    <a href="/groups/new" class="panel_item">Добавить группу</a>
+    <a href="/groups" class="panel_item">Показать список всех групп</a>
+    <a href="/timetables/new" class="panel_item" >Изменить расписание занятий</a>
+    <a href="/start" class="panel_item">Выйти</a>
+    </div>
+</div>
+
+</body>
+</html>

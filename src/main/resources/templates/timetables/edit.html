@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Add subject - ΔΙΑΓΡΑΜΜΑ</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">AdminPanel - create timetable <a href="/admins" class="all_exit">Выйти</a></div>
+    <select id="timetable_selector">
+        <option th:text="${selectedGroup.getName}" th:value="${selectedGroup.getId}"></option>
+        <option th:each="group: ${groups}" th:text="${group.getName}" th:value="${group.getId}"></option>
+    </select>
+
+    <div class="timetable_head">
+        <p class="head_lesson">Урок</p>
+        <p class="head_subject">Предмет</p>
+        <p class="head_teacher">Преподаватель</p>
+    </div>
+
+    <div class="timetable_day" th:each="dayOfWeek :${T(com.example.diagramma.entities.DayOfWeek).values()}">
+        <div th:text="${{dayOfWeek}}"></div>
+        <div th:each="lesson: ${lessons}">
+            <form class="timetable_form" th:id="${{dayOfWeek}} + ${lesson}" th:method="POST" th:action="@{/timetables}" th:object="${timetable}">
+                <input type="hidden" th:value="${selectedGroup.getId}" th:name="groupId" th:id="groupId">
+                <input type="hidden" th:value="${{dayOfWeek}}" th:name="day" th:id="day">
+                <input type="hidden" th:each="tt: ${timetables}" th:if="${tt.getDay == dayOfWeek and tt.getLesson.toString() == lesson}" th:value="${tt.getId}" th:name="timetableId" th:id="timetableId">
+                <input class="form_lesson" type="text" readonly  th:value="${lesson}" th:name="lesson" th:id="lesson">
+                <select class="form_subject" th:field="*{subjectId}" required>
+                    <div th:each="tt: ${timetables}" th:if="${tt.getDay == dayOfWeek and tt.getLesson.toString() == lesson}">
+                        <option th:each="subject: ${subjects}" th:if="${tt.getSubjectId == subject.getId}" th:text="${subject.getName}" th:value="${subject.getId}"></option>
+                    </div>
+                    <option th:each="subject: ${subjects}" th:text="${subject.getName}" th:value="${subject.getId}" ></option>
+                </select>
+                <select class="form_teacher" th:field="*{teacherId}" required>
+                    <div th:each="tt: ${timetables}" th:if="${tt.getDay == dayOfWeek and tt.getLesson.toString() == lesson}">
+                        <option th:each="teacher: ${teachers}" th:if="${tt.getTeacherId == teacher.getId}" th:text="${teacher.getName}" th:value="${teacher.getId}"></option>
+                    </div>
+                    <option th:each="teacher: ${teachers}" th:text="${teacher.getName}" th:value="${teacher.getId}" ></option>
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="button">
+    <input id="submit-button" type="submit">My click text</input>
+</div>
+
+<script type="text/javascript" th:src="@{/js/timetable_selector.js}"></script>
+<script type="text/javascript" th:src="@{/js/update_button.js}"></script>
+<script type="text/javascript" th:src="@{/js/teacher_free.js}"></script>
+<script type="text/javascript" th:src="@{/js/no_classes.js}"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+.panel {
+
+  .panel_item {
+    text-decoration: none;
+    width: 50%;
+    height: 70px;
+    margin-top: 30px;
+
+    border: @primary 2px solid;
+    box-shadow: black 5px 5px 1px;
+    display: block;
+    text-align: center;
+    padding-top: 32px;
+    font-size: 30px;
+    font-family: @font;
+    color: @primary;
+    transition: .1s linear;
+
+    font-weight: 600;
+
+    &:last-child{
+      color: red;
+      border: red 2px solid;
+
+      &:hover {
+        background-color: red;
+        border-color: red;
+      }
+    }
+
+    &:hover {
+      background-color: @primary;
+      border-color: @primary;
+      color: white;
+      transition: .1s linear;
+      transform: translate(5px, 5px);
+      box-shadow: black 0px 0px 0px;
+
+    }
+  }
+}
